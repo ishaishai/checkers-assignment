@@ -1,0 +1,38 @@
+.App {
+  display: flex;
+  height: 100vh;
+}
+
+.checker {
+  margin: auto;
+  border-radius: 50%;
+  width: 70%;
+  height: 70%;
+}
+
+.white {
+  background-color: white;
+}
+
+.black {
+  background-color: black;
+}
+
+.tile {
+  display: flex;
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+}
+
+.brown {
+  background-color: burlywood;
+}
+
+.browner {
+  background-color: brown;
+}
+
+.blue {
+  background-color: rgba(6, 46, 179, 0.445);
+}
