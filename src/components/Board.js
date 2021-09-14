@@ -20,6 +20,7 @@ const Board = (props) => {
   });
   const [playerTurn, setPlayerTurn] = useState("B");
   const [pickedChecker, setPickedChecker] = useState(null);
+  const [toggleError, setToggleError] = useState(false);
 
   useEffect(() => {
     if (state.B === 0 || state.W === 0) {
@@ -86,8 +87,8 @@ const Board = (props) => {
         ) {
           tmpState.matrix[playerTurn === "B" ? i - 1 : i + 1][j + 1] = "X";
         } else {
-          alert("Invalid move");
           setPickedChecker(null);
+          setToggleError(true);
           return;
         }
         --tmpState[playerTurn];
@@ -96,6 +97,10 @@ const Board = (props) => {
         setPickedChecker(null);
         setState(tmpState);
         setPlayerTurn(playerTurn === "W" ? "B" : "W");
+      } else {
+        setToggleError(true);
+        setPickedChecker(null);
+        return;
       }
       if (playerTurn === "B" && i === 7) {
         tmpState.countB++;
@@ -103,10 +108,13 @@ const Board = (props) => {
         tmpState.countW++;
       }
     } else {
-      alert("invalid Move");
+      setToggleError(true);
       setPickedChecker(null);
       return;
     }
+
+    //if a successful move made and a error is shown
+    if (toggleError) setToggleError(false);
   };
 
   return (
@@ -143,6 +151,20 @@ const Board = (props) => {
         });
         return <div style={{ display: "flex" }}>{line}</div>;
       })}
+      {toggleError && (
+        <div
+          style={{
+            position: "relative",
+            width: "fit-content",
+            margin: "auto",
+            color: "red",
+            fontWeight: "800",
+            fontSize: "1.5rem",
+          }}
+        >
+          Invalid Move
+        </div>
+      )}
       <button
         style={{
           position: "absolute",
