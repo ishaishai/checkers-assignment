@@ -62,9 +62,7 @@ const Board = (props) => {
         setPickedChecker(null);
         setState(tmpState);
         setPlayerTurn(playerTurn === "W" ? "B" : "W");
-      }
-      //move and eat to left
-      else if (Math.abs(pickedChecker.j - j) === 2) {
+      } else if (Math.abs(pickedChecker.j - j) === 2) {
         //j difference has to be 2 to over jump
         if (
           (playerTurn === "B" &&
@@ -72,9 +70,12 @@ const Board = (props) => {
             state.matrix[i - 1][j - 1] === "W") || ///black eats white
           (playerTurn === "W" &&
             pickedChecker.i - i === 2 &&
-            state.matrix[i + 1][j - 1] === "B") //white eats black
+            state.matrix[i + 1][j + 1] === "B") //white eats black
         ) {
-          tmpState.matrix[playerTurn === "B" ? i - 1 : i + 1][j - 1] = "X";
+          console.log("EAT RIGHT");
+          tmpState.matrix[playerTurn === "B" ? i - 1 : i + 1][
+            playerTurn === "B" ? j - 1 : j + 1
+          ] = "X";
         }
         //move and eat to left
         else if (
@@ -83,15 +84,19 @@ const Board = (props) => {
             state.matrix[i - 1][j + 1] === "W") || //black eats white
           (playerTurn === "W" &&
             pickedChecker.i - i === 2 &&
-            state.matrix[i + 1][j + 1] === "B") //white eats black
+            state.matrix[i + 1][j - 1] === "B") //white eats black
         ) {
-          tmpState.matrix[playerTurn === "B" ? i - 1 : i + 1][j + 1] = "X";
+          console.log("EAT LEFT");
+          console.log(playerTurn === "B" ? i - 1 : i + 1, j + 1);
+          tmpState.matrix[playerTurn === "B" ? i - 1 : i + 1][
+            playerTurn === "B" ? j + 1 : j - 1
+          ] = "X";
         } else {
           setPickedChecker(null);
           setToggleError(true);
           return;
         }
-        --tmpState[playerTurn];
+        --tmpState[playerTurn === "B" ? "W" : "B"];
         tmpState.matrix[i][j] = playerTurn;
         tmpState.matrix[pickedChecker.i][pickedChecker.j] = "X";
         setPickedChecker(null);
