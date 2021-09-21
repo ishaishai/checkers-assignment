@@ -1,0 +1,16 @@
+@media screen and (max-width: 768px) {
+    .menu-box {
+        width: 80%;
+        top:50px;
+    }
+    .menu-item{
+        font-size: 1.4rem;
+    }
+
+    .game-title {
+        top:-50px;
+        font-size: 2.5rem;
+    }
+
+
+}
