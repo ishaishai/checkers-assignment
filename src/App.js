@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import Board from './components/Board';
+import Menu from './components/Menu';
 import './components/style.css';
 
 function App() {
+    const [start,setStart] = useState(false); 
     return (
         <div className='App'>
-            <Board N={8} />
+
+            {!start ? <Menu startGame={setStart}/> : <Board />}
         </div>
     );
 }

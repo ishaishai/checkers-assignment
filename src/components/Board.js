@@ -72,7 +72,6 @@ const Board = (props) => {
             pickedChecker.i - i === 2 &&
             state.matrix[i + 1][j + 1] === "B") //white eats black
         ) {
-          console.log("EAT RIGHT");
           tmpState.matrix[playerTurn === "B" ? i - 1 : i + 1][
             playerTurn === "B" ? j - 1 : j + 1
           ] = "X";
@@ -86,7 +85,6 @@ const Board = (props) => {
             pickedChecker.i - i === 2 &&
             state.matrix[i + 1][j - 1] === "B") //white eats black
         ) {
-          console.log("EAT LEFT");
           console.log(playerTurn === "B" ? i - 1 : i + 1, j + 1);
           tmpState.matrix[playerTurn === "B" ? i - 1 : i + 1][
             playerTurn === "B" ? j + 1 : j - 1
@@ -100,6 +98,7 @@ const Board = (props) => {
         tmpState.matrix[i][j] = playerTurn;
         tmpState.matrix[pickedChecker.i][pickedChecker.j] = "X";
         setPickedChecker(null);
+
         setState(tmpState);
         setPlayerTurn(playerTurn === "W" ? "B" : "W");
       } else {
@@ -123,12 +122,8 @@ const Board = (props) => {
   };
 
   return (
-    <div
-      style={{
-        margin: "auto",
-        height: "fit-content",
-        width: "fit-content",
-      }}
+    <div className="board"
+      
     >
       {state.matrix.map((row, i) => {
         let line = [];
@@ -170,15 +165,11 @@ const Board = (props) => {
           Invalid Move
         </div>
       )}
-      <button
-        style={{
-          position: "absolute",
-          bottom: "5%",
-        }}
+      <div className="menu-item"
         onClick={() => setPickedChecker(null)}
       >
-        clear
-      </button>
+        CLEAR SELECTION
+      </div>
     </div>
   );
 };
