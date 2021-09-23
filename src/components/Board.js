@@ -122,9 +122,7 @@ const Board = (props) => {
   };
 
   return (
-    <div className="board"
-      
-    >
+    <div className="board">
       {state.matrix.map((row, i) => {
         let line = [];
         row.forEach((tile, j) => {
@@ -165,9 +163,7 @@ const Board = (props) => {
           Invalid Move
         </div>
       )}
-      <div className="menu-item"
-        onClick={() => setPickedChecker(null)}
-      >
+      <div className="menu-item" onClick={() => setPickedChecker(null)}>
         CLEAR SELECTION
       </div>
     </div>

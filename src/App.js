@@ -9,7 +9,7 @@ function App() {
     return (
         <div className='App'>
 
-            {!start ? <Menu startGame={setStart}/> : <Board />}
+            {!start ? <Menu startGame={setStart} /> : <Board />}
         </div>
     );
 }
